@@ -1,0 +1,107 @@
+C:\MinGW\bin\mingw32-make.exe
+
+int arraySortedOrnot(long* vetor, long n) {
+    if(n==1||n==0) return 1;
+    if(vetor[n-1]<vetor[n-2]) return 0;
+    return arraySortedOrnot(vetor, n-1);
+}
+
+if(arraySortedOrnot(vetor, tamanhoVetor)) {
+    std::cout << "VETOR ORDENADO" << std::endl;
+} else {
+    std::cout << "VETOR NÃO ORDENADO" << std::endl;
+}
+for(long j=0; j<tamanhoVetor; j++) {
+    std::cout << vetor[j] << " ";
+}
+std::cout << std::endl;
+
+std::string variacao = "QM3";
+std::string tipoVetor = "OrdC";
+long tamanhoVetor = 5;
+bool exibirVetor = 1;
+
+
+ /*
+ 	std::string variacaoArray[7] = {"QC", "QM3", "QPE", "QI1", "QI5", "QI10", "QNR"};
+    std::string tipoVetorArray[3] = {"OrdC", "OrdD", "Ale"};
+    long valorBase = 50000;
+    long tamanhoVetorArray[10] = {valorBase, 2*valorBase, 3*valorBase, 4*valorBase, 5*valorBase, 6*valorBase, 7*valorBase,
+                             8*valorBase, 9*valorBase, 10*valorBase};
+    bool exibirVetor = 0;
+
+    for(int i=0;i<7;i++) {
+        std::string variacao = variacaoArray[i];
+        for(int j=0;j<3;j++) {
+            std::string tipoVetor = tipoVetorArray[j];
+            for(int k=0;k<10;k++) {
+                long tamanhoVetor = tamanhoVetorArray[k];
+                executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, vetoresUtilizados);
+
+                imprimeResultado(variacao, tipoVetor, tamanhoVetor, vetorResultados, vetoresUtilizados, exibirVetor);
+            }
+        }
+    }
+*/
+
+
+    //Obtem parâmetros de entrada;
+    std::string variacao = argv[1];
+    std::string tipoVetor = argv[2];
+    long tamanhoVetor = std::stol(std::string(argv[3]));
+    bool exibirVetor = argv[4] != nullptr;
+
+    //Define quantidade de execuções do algoritmo e variaveis de saída;
+    long numeroExecucoes = 20;
+    double vetorResultados[3] = {}; // Vetor dos resultados [0]:media de movimentacao de registro [1]:media de comparacao de chave [2]:mediana do tempo de execucao;
+    std::string vetoresUtilizados;
+
+    //Executa método Quicksort de acordo com os parâmetros definidos;
+    executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, vetoresUtilizados);
+
+    //Imprime o resultado obtido após terminar todas as execuções;
+    imprimeResultado(variacao, tipoVetor, tamanhoVetor, vetorResultados, vetoresUtilizados, exibirVetor);
+
+    return 0;
+    
+
+/*
+    //Obtem parâmetros de entrada;
+    std::string variacao = argv[1];
+    std::string tipoVetor = argv[2];
+    long tamanhoVetor = std::stol(std::string(argv[3]));
+    bool exibirVetor = argv[4] != nullptr;
+*/
+    //Define quantidade de execuções do algoritmo e variaveis de saída;
+    long numeroExecucoes = 20;
+    double vetorResultados[3] = {}; // Vetor dos resultados [0]:media de movimentacao de registro [1]:media de comparacao de chave [2]:mediana do tempo de execucao;
+    std::string vetoresUtilizados;
+
+    std::string variacaoArray[1] = {"QNR"};
+    std::string tipoVetorArray[2] = {"OrdD", "Ale"};
+    long valorBase = 50000;
+    long tamanhoVetorArray[10] = {valorBase, 2*valorBase, 3*valorBase, 4*valorBase, 5*valorBase, 6*valorBase, 7*valorBase,
+                                  8*valorBase, 9*valorBase, 10*valorBase};
+    bool exibirVetor = 0;
+
+    for(int i=0;i<1;i++) {
+        std::string variacao = variacaoArray[i];
+        for(int j=0;j<2;j++) {
+            std::string tipoVetor = tipoVetorArray[j];
+            for(int k=0;k<10;k++) {
+                long tamanhoVetor = tamanhoVetorArray[k];
+                executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, vetoresUtilizados);
+
+                imprimeResultado(variacao, tipoVetor, tamanhoVetor, vetorResultados, vetoresUtilizados, exibirVetor);
+                std::cout<<std::endl;
+            }
+        }
+    }
+/*
+    //Executa método Quicksort de acordo com os parâmetros definidos;
+    executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, vetoresUtilizados);
+
+    //Imprime o resultado obtido após terminar todas as execuções;
+    imprimeResultado(variacao, tipoVetor, tamanhoVetor, vetorResultados, vetoresUtilizados, exibirVetor);
+*/
+    return 0;
