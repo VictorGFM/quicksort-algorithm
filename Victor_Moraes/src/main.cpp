@@ -7,7 +7,7 @@
 #include "Pilha.h"
 
 void executaQuicksort(std::string &variacao, std::string &tipoVetor, long tamanhoVetor, long numeroExecucoes,
-                      double *vetorResultados, std::string vetoresUtilizados);
+                      double *vetorResultados, std::string *vetoresUtilizados);
 void inicializaVetor(long *vetor, std::string &tipoVetor, long tamanhoVetor, std::string *vetoresUtilizados);
 double* selecionaQuicksort(const std::string &variacao, long tamanhoVetor, long *vetor);
 
@@ -56,11 +56,11 @@ int main(int argc, char* argv[])  {
 
     //Define quantidade de execuções do algoritmo e variaveis de saída;
     long numeroExecucoes = 20;
-    double vetorResultados[3] = {}; // Vetor dos resultados [0]:media de movimentacao de registro [1]:media de comparacao de chave [2]:mediana do tempo de execucao;
+    double vetorResultados[3] = {}; // Vetor dos resultados [0]:media de movimentacao de registro [1]:media de 					       comparacao de chave [2]:mediana do tempo de execucao;
     std::string vetoresUtilizados;
 
     //Executa método Quicksort de acordo com os parâmetros definidos;
-    executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, vetoresUtilizados);
+    executaQuicksort(variacao, tipoVetor, tamanhoVetor, numeroExecucoes, vetorResultados, &vetoresUtilizados);
 
     //Imprime o resultado obtido após terminar todas as execuções;
     imprimeResultado(variacao, tipoVetor, tamanhoVetor, vetorResultados, vetoresUtilizados, exibirVetor);
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])  {
 }
 
 void executaQuicksort(std::string &variacao, std::string &tipoVetor, long tamanhoVetor, long numeroExecucoes,
-                      double *vetorResultados, std::string vetoresUtilizados) {
+                      double *vetorResultados, std::string* vetoresUtilizados) {
     //Define indice de mediana, para o cálculo da mediana de tempo de execução;
     bool isParNumeroExecucoes = numeroExecucoes%2 == 0;
     int indiceMediana = (numeroExecucoes/2)-1;
@@ -78,7 +78,7 @@ void executaQuicksort(std::string &variacao, std::string &tipoVetor, long tamanh
     for (int i = 0; i < numeroExecucoes; i++) {
         //Inicializa vetor com base no parâmetro de entrada (OrdC, OrdD ou Ale);
         long* vetor = new long[tamanhoVetor];
-        inicializaVetor(vetor, tipoVetor, tamanhoVetor, &vetoresUtilizados);
+        inicializaVetor(vetor, tipoVetor, tamanhoVetor, vetoresUtilizados);
 
         //Obtem resultado da execução do Quicksort;
         double* resultado = selecionaQuicksort(variacao, tamanhoVetor, vetor);
@@ -594,6 +594,6 @@ void imprimeResultado(std::string &variacao, std::string &tipoVetor, long tamanh
     std::cout << std::fixed << std::setprecision(0) << variacao << " " << tipoVetor << " " << tamanhoVetor << " " << round(vetorResultados[0])
               << " " << round(vetorResultados[1]) << " " << std::setprecision(0) <<vetorResultados[2];
     if(exibirVetor) {
-        std::cout << std::endl << vetoresUtilizados ;
+	std::cout << std::endl << vetoresUtilizados;
     }
 }

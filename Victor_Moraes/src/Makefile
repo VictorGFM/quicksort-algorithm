@@ -22,7 +22,7 @@ CC = g++
 # The flags below will be included in the implicit compilation rules
 # 'make' infers that the code in the directory is in c++
 # and looks for the CPPFLAGS variable
-CPPFLAGS = -g -Wall -std=c++11 -O3 -Wl,--stack,52428800
+CPPFLAGS = -g -Wall -std=c++11 -O3
 
 all: $(ALL)
 
