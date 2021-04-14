@@ -596,4 +596,5 @@ void imprimeResultado(std::string &variacao, std::string &tipoVetor, long tamanh
     if(exibirVetor) {
 	std::cout << std::endl << vetoresUtilizados;
     }
+    std::cout << std::endl;
 }
